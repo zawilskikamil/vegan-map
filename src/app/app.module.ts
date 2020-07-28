@@ -11,29 +11,46 @@ import { createCustomElement } from '@angular/elements';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LinkListElementComponent } from './components/map-popup/link-list-element/link-list-element.component';
+import { SideMapMenuComponent } from './components/side-map-menu/side-map-menu.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     MapPopupComponent,
-    LinkListElementComponent
+    LinkListElementComponent,
+    SideMapMenuComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     MatIconModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   providers: [
     MarkerService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
   constructor(private injector: Injector) {
-    const MapPopupElement = createCustomElement(MapPopupComponent, {injector});
+    const MapPopupElement = createCustomElement(MapPopupComponent, { injector });
     // Register the custom element with the browser.
     customElements.define('app-map-popup', MapPopupElement);
   }

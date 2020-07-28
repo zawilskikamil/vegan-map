@@ -1,1 +1,2 @@
-<app-map></app-map>
+<app-map [selectedCityId]="selectedCityId" ></app-map>
+<app-side-map-menu [cities]="cities" (selectedCity)='onSelectedCity($event)'></app-side-map-menu>

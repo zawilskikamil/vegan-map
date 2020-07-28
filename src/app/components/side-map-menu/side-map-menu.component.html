@@ -1,0 +1,21 @@
+<mat-toolbar>
+    <button mat-icon-button class="icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+
+    <form class="city-form">
+        <mat-form-field floatLabel='never'>
+            <input type="text" aria-label="Number" matInput [formControl]="myControl"
+                [matAutocomplete]="auto" [(ngModel)]="value" placeholder="Wybierz miasto">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)='selectCity($event.option.value)'>
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
+            <button type="button" mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
+                (click)="value = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </form>
+</mat-toolbar>

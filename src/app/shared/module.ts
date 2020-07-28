@@ -8,3 +8,8 @@ export interface Place {
     google_map: string;
     vegan_level: number;
 }
+
+export interface City {
+    id: number;
+    name: string;
+}

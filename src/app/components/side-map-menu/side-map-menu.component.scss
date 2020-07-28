@@ -1,0 +1,24 @@
+mat-toolbar {
+    background: white;
+    width: 400px;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 12px;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.city-form {
+    padding-top: 10px;
+
+    mat-form-field {
+        width: 200px;
+        font-size: medium;
+        padding: 10px;
+    }
+    
+}
+

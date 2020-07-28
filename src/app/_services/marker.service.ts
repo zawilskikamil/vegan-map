@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { NgElement, WithProperties } from '@angular/elements';
 import { MapPopupComponent } from '../components/map-popup/map-popup.component'
 import * as L from 'leaflet';
@@ -10,22 +10,31 @@ import { Place } from '../shared/module';
 })
 export class MarkerService {
 
-  capitals: string = 'http://192.168.10.10/places';
-
+  private placesUrl: string = 'http://192.168.10.10/api/places';
+  private markers: Object[];
   constructor(private http: HttpClient) {
   }
 
-  makeCapitalMarkers(map: L.map): void {
-    this.http.get(this.capitals).subscribe((res: Place[]) => {
-      console.log(res);
+  makeCapitalMarkers(map: L.map, selectedCity: number): void {
+    // TODO fix this ugly workaround for clearing markers 
+    map.eachLayer((layer) => {
+      if(!layer._url){
+        layer.remove();
+      }
+    });
+
+    let url = this.placesUrl;
+    let params = null;
+    if (!!selectedCity) {
+      params = new HttpParams().set('city_id', selectedCity.toString());
+    }
+    this.http.get(url, { params: params }).subscribe((res: Place[]) => {
       for (const c of res) {
         const lat = c.lat;
         const lon = c.lon;
         const icon = this.getIcon(c);
         const marker = L.marker([lon, lat], { icon: icon }).addTo(map);
 
-
-        // marker.on('click', this.createPopupComponentWithMessage(c))
         marker.bindPopup(fl => this.createPopupComponentWithMessage(c));
         marker.addTo(map);
       }
