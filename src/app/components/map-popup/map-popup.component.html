@@ -1,0 +1,12 @@
+<div class='map-popup'>
+    <h2>{{ place.name }}</h2>
+    <p>{{ place.description }}</p>
+    <div class='links'>
+        <app-link-list-element [address]="place.website" [icon]="'public'" [website_name]="place.website">
+        </app-link-list-element>
+        <app-link-list-element [address]="place.fb" [icon]="'public'" [website_name]="'facebook'">
+        </app-link-list-element>
+        <app-link-list-element [address]="place.google_map" [icon]="'directions'" [website_name]="'Jak dojecać?'">
+        </app-link-list-element>
+    </div>
+</div>
